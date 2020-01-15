@@ -7,6 +7,7 @@
         </div>
 
         @foreach ($posts as $key => $post)
+        
             <div class="card text-center">
                 <div class="card-header">
                     標題：{{ $post->title }}

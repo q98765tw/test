@@ -14,4 +14,8 @@ class Post extends Model
     {
         return $this->belongsTo('App\Entities\User');
     }
+    public function message()
+    {
+    return $this->hasMany('App\Entities\Message');
+    }
 }

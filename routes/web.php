@@ -18,6 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth:web']], function () {
-    Route::get('/1111', 'PostController@guard');
+    // Route::get('/1111', 'PostController@guard');
     Route::resource('post', 'PostController');
+    Route::resource('message','MessageController');
+    
+    // Route::get('/post', 'MessageController@create');
+    // Route::get('/post','MessageController@index');
 });

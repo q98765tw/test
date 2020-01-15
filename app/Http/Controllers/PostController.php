@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Entities\Post;
+use App\Entities\Message;
 class PostController extends Controller
 {
     /**
@@ -20,17 +21,12 @@ class PostController extends Controller
         $this->postRepo = $postRepo;
     }
     
-    protected function guard()
-    {
-        // $post = $this->postRepo->auth(name);
-        $post = auth()->user()->name;
-        dd($post);
-        return view('post.show', ['posts' => $posts]);
-    }
+    
 
     public function index()
     {
         $posts = $this->postRepo->index();
+      
         return view('post.index', ['posts' => $posts]);
     }
 
@@ -69,15 +65,16 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        
         $post = $this->postRepo->find($id);
+        $message = Message::with('user')->where('post_id',$id)->get();
         
         if (!$post) {
             return redirect()->route('post.index');
         }
         
-        return view('post.show', ['post' => $post]);
+        return view('post.show', ['post' => $post , 'messages' => $message] );
     }
+    // 'message' => $message
     
 
     /**

@@ -4,6 +4,7 @@
     <div class="container">      
         <div class="card text-center">
             <div class="card-header">
+           
                 標題：{{ $post->title }}
             </div>
             
@@ -13,6 +14,7 @@
                 </h5>
                 <p class="card-text">
                     {{ $post->content }}
+               
                 </p>
             </div>
             <div class="card-footer text-muted">
@@ -43,7 +45,36 @@
             
             @endif
             
-            
+        @foreach ($messages as $key => $message)
+            <div class="card-footer text-muted">
+                   
+                    發文者：{{ $message->user->name  }}發文日期：{{ $message->created_at }}
+            </div>
+                <div >
+                       
+                    <div class="col-sm-4">
+                        {{$message->content}}
+                    </div>
+                    
+                </div>
+           
+        @endforeach
+            <div class="card-footer text-muted">
+                <div style='display:none;'><input type="text" id="user_id" name="user_id"></div>
+                發文者：{{ auth()->user()->name }}
+            </div>
+            <div >
+                <form action="{{ route('message.store') }}" method="post">
+                @csrf
+                <div class="col-sm-4">
+                <input type="hidden" name="post_id" value="{{$post->id}}">
+                    <textarea class="form-control" id="content" name="content">
+                    </textarea>
+                </div>
+                <button class="btn btn-primary">送出</button>
+                <button class="btn btn-danger">刪除</button>
+                </form> 
+            </div>
         </div>
     </div>
 @endsection

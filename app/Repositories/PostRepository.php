@@ -19,7 +19,10 @@ class PostRepository
     {
         return Post::with('user')->find($id);
     }
-
+    public function mm($id)
+    {
+        return Post::find($id)->message();
+    }
     public function delete($id)
     {
         return Post::destroy($id);
