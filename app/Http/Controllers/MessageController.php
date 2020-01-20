@@ -28,9 +28,9 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
+        
       
         $post = $this->messages->create(request()->only('post_id', 'content'));
-        
         if ($post) {
             return redirect()->route('post.show', $post->post_id);
         }

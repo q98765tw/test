@@ -13,6 +13,7 @@ class MeRepository
     public function index(){
         
         return Message::get();
+        return view('post.show', ['posts' => $posts]);
     }
     public function create(array $data)
     {

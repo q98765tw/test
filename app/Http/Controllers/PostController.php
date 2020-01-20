@@ -26,10 +26,19 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postRepo->index();
+        // dd($posts);
       
         return view('post.index', ['posts' => $posts]);
     }
 
+    public function user()
+    {
+        
+        $posts = $this->postRepo->user(request()->content);
+        // dd($posts);
+        
+        return view('post.index', ['posts' => $posts]);
+    }
     /**
      * Show the form for creating a new resource.
      *

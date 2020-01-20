@@ -3,8 +3,20 @@
 @section('content')
     <div class="container">
         <div align="center">
+            <form action="{{ route('post.user') }}" method="post">
+                @csrf
+                <textarea style="width:600px; height:30px;" class="form-control" id="content" name="content">
+                </textarea>
+                <input type="submit" value="我要搜尋la">
+            </form>
+        </div>
+        <div>
+            &nbsp
+        </div>
+        <div align="center">
             <a href="{{ route('post.create') }}" class="btn btn-primary">我要貼文</a>
         </div>
+        {{-- <a href="{{ route('post.user') }}" class="btn btn-secondary">111</a> --}}
 
         @foreach ($posts as $key => $post)
         
@@ -23,5 +35,5 @@
                 </div>
             </div><br>
         @endforeach
-    </div>
+    {!! $posts->links() !!}
 @endsection

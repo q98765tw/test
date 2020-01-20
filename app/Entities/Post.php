@@ -10,6 +10,7 @@ class Post extends Model
         'user_id', 'title', 'content',
     ];
     
+    
     public function user()
     {
         return $this->belongsTo('App\Entities\User');

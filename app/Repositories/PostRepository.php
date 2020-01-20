@@ -6,15 +6,17 @@ use App\Entities\Post;
 
 class PostRepository
 {
-    // public function guard()
-    // {
+    
 
-    // }
     public function index()
     {
-        return Post::with('user')->get();
+        
+        return Post::with('user')->Paginate(3);
     }
-
+    public function user($content)
+    {
+        return Post::where('title', 'like', "%{$content}%")->Paginate(3);
+    }
     public function find($id)
     {
         return Post::with('user')->find($id);
